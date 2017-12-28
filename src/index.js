@@ -79,14 +79,35 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
         //say(response, `Sorry. I can only understand text messages.`);
     }else{
 
-		
+		var jsonData = {
+        "auth_token":"471409239aa7d393-8092b2ab7f344f06-4cf82b8deb78a1b2",
+        "receiver":response.userProfile.id,
+        "min_api_version":1,
+        "sender":{
+            "name":"John McClane",
+            "avatar":"http://avatar.example.com"
+        },
+        "tracking_data":"tracking data",
+        "type":"text",
+        "text":"Hello world!"
+    };
+
+    request.post("https://chatapi.viber.com/pa/send_message", {json: true, body: jsonData}, function(err, res, body) {
+        if (!err && res.statusCode === 200) {
+
+            console.log(res);
+        }
+    });
 	}
+
+    //response.send(message);
+
 });
 
 bot.onTextMessage(/./, (message, response) => {
     checkUrlAvailability(response, message.text);
 
-
+    /*
 
 
     var jsonData = {
@@ -107,12 +128,12 @@ bot.onTextMessage(/./, (message, response) => {
 
             console.log(res);
         }
-    });
+    });*/
 
 });
 
 bot.onTextMessage(/^hi|hello$/i, (message, response) => {
-
+    /*
     var jsonData = {
         "auth_token":"471409239aa7d393-8092b2ab7f344f06-4cf82b8deb78a1b2",
         "receiver":"",
@@ -133,7 +154,7 @@ bot.onTextMessage(/^hi|hello$/i, (message, response) => {
         }
     });
 
-
+ */
 
 
 });
